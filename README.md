@@ -38,7 +38,12 @@ test.show(save_path="./image/example.png")  # Save usage properties save_path = 
 - `plot()`
   - **pic_px :** image size list , [width,height] , The unit is px
 - `add_annotations()`
-  - **annotation_list :** 
+  - **annotation_list :** A two-dimensional list representing the position of the annotation, with each sublist representing an annotation. The length of 3 is the inter-group annotation, the length of 4 is the intra-group annotation, and the last value controls the y-axis position.
+
+    `[0,1,1]` means that the annotation is between the 1/2th group, and the y-axis position drops 1 level relative to y_max; `[2,0,3,-1]` means that the annotation is within the 3rd group, and within the group In the 1/4th column, the y-axis position rises one level relative to y_max.
+    > 表示注释在什么位置的二维列表，每一个子列表表示一个注释。长度为3的是组间注释，长度4为组内注释，最后一个值控制y轴位置。
+    >
+    > `[0,1,1]` 表示注释在第1/2个组之间，y轴位置相对于 y_max 下降1层；`[2,0,3,-1]` 表示注释在第3个组内，组内的第1/4个柱间，y轴位置相对于 y_max 上升一层。
   - **text :** annotation symbol, _default = "***"_ , which can also be 🪙🆙🏅⭐🔥🍋💔😃😭 ... symbols, visible https://www.emojiall.com/zh-hans/copy 
   - **size :**  symbol font size, _default = 16_
   - **line_width :** line width, _default = 1.5_
