@@ -39,6 +39,8 @@ test.show(save_path="./image/example.png")  # Save usage properties save_path = 
 
 ## Parameter explanation
 
+🌀 You can use plotly's syntax to set the `object.fig` , new settings will overwrite the default settings.
+
 - `__init__` : 
   - **data :** Data frame used for drawing bar chart
   - **error :** Data frame corresponding to error bars
@@ -64,3 +66,10 @@ test.show(save_path="./image/example.png")  # Save usage properties save_path = 
 - `show()`
   - **save_path :** path to save.
 - `set_color()` : set the color of the column, given a list
+
+
+## TODO
+
+- [ ] Supports boxplots
+
+## Any feedback on bugs or suggestions for features are welcome
