@@ -4,6 +4,14 @@
 
 ## How to use
 
+- Download the `plotly_signif.py` to the path of your program
+- ```py
+  from plotly_signif import *
+  ```
+- Enjoy it
+
+You can refer to the following example : 
+
 ```py
 from plotly_signif import *
 import pandas as pd
