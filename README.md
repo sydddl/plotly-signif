@@ -144,4 +144,11 @@ Box_test.show()
 - [x] Supports boxplots
 - [ ] Supports horizontal drawing
 
+## requirement
+
+- numpy
+- pandas
+- plotly
+- kaleido  (There may be problems with the installation of this package)
+
 ## Any feedback on bugs or suggestions for features are welcome
