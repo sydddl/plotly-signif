@@ -21,21 +21,53 @@ df2 = iris.groupby("species").sem()
 ```
 
 ```py
-test = plotly_signif(data=df1,error=df2,text={"x":"","y":""})  
+test = plotly_signif(data=df1,error=df2,text={"x":"X","y":"Y"})  
 test.plot()
-# Add statistical annotation
-annotation_list = [[0,1,1],[2,0,3,-1],[2,1,2,2],[0,1,3,6],[0,2,3,10]]
-test.add_annotations(annotation_list = annotation_list,text="***")   
-test.add_annotations(annotation_list = [[1,2,3,4]],text="🏅",sign_d_index=2) 
-test.add_annotations(annotation_list = [[1,1,2,5]],text="😭",sign_d_index=2) 
+# 添加统计注释
+annotation_list = [[0,1,1],[2,0,3,-1],[2,1,2,2],[0,1,3,6],[0,2,3,9]]
+test.add_annotations(annotation_list = annotation_list,text="***",inne_color="#B799FF")   
+test.add_annotations(annotation_list = [[1,2,3,3]],text="🏅",sign_d_index=2) 
+test.add_annotations(annotation_list = [[1,1,2,4]],text="😭",sign_d_index=2) 
 test.add_annotations(annotation_list = [[1,0,2,2]],text="⭐⭐⭐",sign_d_index=2,size=12) 
-test.add_annotations(annotation_list = [[1,2,0]],text="ns",size=14,sign_d_index=2) 
-# draw/save
-test.show(save_path="./image/example.png")  # Save usage properties save_path = "./image/example.png" 
+test.add_annotations(annotation_list = [[1,2,0]],text="ns",size=14,sign_d_index=2.5) 
+# 绘制/保存
+test.show("./image/example.png")  # 保存使用属性 save_path = "./image/example.png" 
 ```
 
 ![](./image/example.png)
 
+```py
+test2 = plotly_signif(data=df1,error=df2,text={"x":"X","y":"Y"})  
+test2.set_color(["#453C67","#6D67E4",'#B799FF','#ACBCFF']) # change the colors
+test2.plot(pic_px=[580,650])
+# An example of changing labels based on plotly syntax
+test2.fig.update_layout(
+    title = dict(  # set the title
+        text = "Test 2",
+        font = {'size': 20},
+        x = 0.5,
+        y = 0.9,
+        ),
+)
+test2.fig.update_layout(   # set the side labels
+                legend=dict(
+                    orientation="h",
+                    x=0.12,
+                    y=-0.15, 
+                    traceorder="normal",
+                    font=dict(size=16),
+                ),
+            )
+test2.add_annotations(annotation_list = [[0,1,3,6]],text="🧠",sign_d_index=2) 
+test2.add_annotations(annotation_list = [[0,0,3,3]],text="❓",sign_d_index=2) 
+test2.add_annotations(annotation_list = [[1,0,0,2.3]],text="👽",sign_d_index=2,inne_color="#FFFFFF") 
+test2.add_annotations(annotation_list = [[1,2,2,5]],text="🤖",sign_d_index=2,inne_color="#FFFFFF") 
+test2.add_annotations(annotation_list = [[1,1,1,7.6]],text="🐵",sign_d_index=2,inne_color="#FFFFFF") 
+test2.add_annotations(annotation_list = [[1,3,3,10]],text="🐁",sign_d_index=2,inne_color="#FFFFFF") 
+test2.show()
+```
+
+![](./image/example2.png)
 
 ## Parameter explanation
 
@@ -66,6 +98,9 @@ test.show(save_path="./image/example.png")  # Save usage properties save_path = 
 - `show()`
   - **save_path :** path to save.
 - `set_color()` : set the color of the column, given a list
+  `set_color()` need before use `plot()`
+
+
 
 
 ## TODO

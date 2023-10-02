@@ -15,7 +15,7 @@ class plotly_signif():
         self.bargap = 0.25 # 表示类内间隔
         self.color = ["#5044f3",'#8ca0f7',"rgba(104, 135, 255,0.4)",'#4DECB9', "rgba(154, 225, 155,0.4)"]  #默认颜色
 
-    def plot(self,pic_px=[500,550]):
+    def plot(self,pic_px=[650,600]):
         for i, column in enumerate(self.df.columns):
             self.fig.add_trace(go.Bar(
                 x=self.df.index,
@@ -39,21 +39,22 @@ class plotly_signif():
                     tickfont=dict(size=18, color='black'))
         self.fig.update_yaxes(title_text=self.text["y"],showline=True, linewidth=3, linecolor='black', tickfont=dict(size=16),
                  title_standoff=10,tickmode='auto',showticklabels=True,ticks='outside',
-                 title_font=dict(size=20, color='black'))
+                 title_font=dict(size=18, color='black'))
         self.fig.update_layout(
                 plot_bgcolor='#ffffff',  # 设置背景色为白色
                 hovermode='closest',
                 dragmode='select',
                 barmode='group',
                 bargap=self.bargap,
-                legend=dict(
-                    orientation='h', 
-                    x=0.1,
-                    y=-0.1,
-                    traceorder="normal",
-                    font=dict(size=16,),
-                    ),
                 width=pic_px[0],height=pic_px[1], # 图 -> 宽/高
+            )
+        self.fig.update_layout(
+                legend=dict(
+                    x=1,
+                    y=0.5,
+                    traceorder="normal",
+                    font=dict(size=15),
+                ),
             )
         self.fig.update_traces(textfont_family="Raleway", selector=dict(type='bar'))
 
@@ -123,7 +124,7 @@ class plotly_signif():
         else:
             x_local = np.array(anno_at).mean()
             self.fig.add_annotation(text=kwargs["text"],name="p-value",xref="x", yref="y",
-                        x=x_local, y=y_max+d, showarrow=False,font=dict(size=kwargs["size"], color="black"),)
+                        x=x_local, y=y_max+d, showarrow=False,font=dict(size=kwargs["size"], color=kwargs["color"]),)
             self.fig.add_shape(type="line",x0=self.Group_name[anno_at[0]],y0=y_max, x1=self.Group_name[anno_at[1]], y1=y_max,
                                line=dict(color=kwargs["color"],width=kwargs["line_width"]))
             self.fig.add_shape(type="line",x0=self.Group_name[anno_at[0]],y0=y_max-line_d, x1=self.Group_name[anno_at[0]], y1=y_max,
