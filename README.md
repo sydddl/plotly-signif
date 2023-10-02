@@ -10,6 +10,8 @@
   ```
 - Enjoy it
 
+### Bar 
+
 You can refer to the following example : 
 
 ```py
@@ -69,16 +71,50 @@ test2.show()
 
 ![](./image/example2.png)
 
+### Box
+
+
+```py
+data = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/fmri.csv')
+
+
+subject	timepoint	event	region	signal
+0	s13	18	stim	parietal	-0.017552
+1	s5	14	stim	parietal	-0.080883
+2	s12	18	stim	parietal	-0.081033
+3	s11	18	stim	parietal	-0.046134
+4	s10	18	stim	parietal	-0.037970
+...	...	...	...	...	...
+1059	s0	8	cue	frontal	0.018165
+1060	s13	7	cue	frontal	-0.029130
+1061	s12	7	cue	frontal	-0.004939
+1062	s11	7	cue	frontal	-0.025367
+1063	s0	0	cue	parietal	-0.006899
+```
+
+```py
+Box_test = plotly_signif(data=data,text={"x":"Region","y":"Signal"},mode="Box")  
+Box_test.plot(pic_px=[840,620],Box_list=["subject","region","signal"])
+annotation_list = [[0,1,0],[0,0,2,1],[0,2,5,4],[1,3,4,5]]
+Box_test.add_annotations(annotation_list=annotation_list)
+Box_test.fig.update_layout(title_text="Seaborn-data-fmri groupby subject")
+Box_test.show()
+```
+
+![](./image/example3.png)
+
 ## Parameter explanation
 
 🌀 You can use plotly's syntax to set the `object.fig` , new settings will overwrite the default settings.
 
 - `__init__` : 
   - **data :** Data frame used for drawing bar chart
-  - **error :** Data frame corresponding to error bars
+  - **error :** Data frame corresponding to error bars, only used with `mode = "Bar"`
   - **text :** Image text label
+  - **mode :** _default = "Bar"_ , and supports "Box" to plot
 - `plot()`
   - **pic_px :** image size list , [width,height] , The unit is px
+  - **Box_list :** If a box plot is drawn, the meaning of this list is `["which Group","which x","which y"] `
 - `add_annotations()`
   - **annotation_list :** A two-dimensional list representing the position of the annotation, with each sublist representing an annotation. The length of 3 is the inter-group annotation, the length of 4 is the intra-group annotation, and the last value controls the y-axis position.
 
@@ -105,6 +141,7 @@ test2.show()
 
 ## TODO
 
-- [ ] Supports boxplots
+- [x] Supports boxplots
+- [ ] Supports horizontal drawing
 
 ## Any feedback on bugs or suggestions for features are welcome

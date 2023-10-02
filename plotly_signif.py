@@ -4,38 +4,65 @@ import plotly.graph_objects as go
 from kaleido.scopes.plotly import PlotlyScope
 
 class plotly_signif():
-    def __init__(self,data=pd.DataFrame,error=pd.DataFrame,text={},json={}) -> None:
+    def __init__(self,data=pd.DataFrame,error=pd.DataFrame,text={},json={},mode="Bar") -> None:
         self.fig = go.Figure()
         self.df = data
         self.error = error
         self.text = text
+        self.mode = mode  # "Bar","Box","hBar","hBox"
         self.Group_name = list(self.df.index)
         self.inne_num = self.df.shape[1] #一组几个柱
         self.width = 0.5 / self.inne_num  # 柱宽
         self.bargap = 0.25 # 表示类内间隔
         self.color = ["#5044f3",'#8ca0f7',"rgba(104, 135, 255,0.4)",'#4DECB9', "rgba(154, 225, 155,0.4)"]  #默认颜色
 
-    def plot(self,pic_px=[650,600]):
-        for i, column in enumerate(self.df.columns):
-            self.fig.add_trace(go.Bar(
-                x=self.df.index,
-                y=self.df[column],
-                name=column,
-                marker_color=self.color[i % len(self.color)],  # 根据索引获取循环的颜色
-                width=self.width,
-                marker=dict(
-                    line=dict(color='rgba(22, 24, 27, 0.7)', width=0)
-                ),
-                error_y=dict(
-                    type='data',
-                    array=self.error[column],
-                    visible=True,
-                    color='black',
-                    width = 16/self.inne_num ,thickness=1.6
-                    )
-            ))
+    def plot(self,pic_px=[650,600],Box_list = []):
+        '''
+        Box_list = ["which Group","which x","which y"]
+        '''
+        if self.mode[-3:] == "Bar":
+            for i, column in enumerate(self.df.columns):
+                self.fig.add_trace(go.Bar(
+                    x=self.df.index,
+                    y=self.df[column],
+                    name=column,
+                    marker_color=self.color[i % len(self.color)],  # 根据索引获取循环的颜色
+                    width=self.width,
+                    marker=dict(
+                        line=dict(color='rgba(22, 24, 27, 0.7)', width=0)
+                    ),
+                    error_y=dict(
+                        type='data',
+                        array=self.error[column],
+                        visible=True,
+                        color='black',
+                        width = 16/self.inne_num ,thickness=1.6
+                        )
+                ))
+            self.fig.update_layout(
+                barmode = 'group',
+                bargap= self.bargap,
+                )
+            self.fig.update_traces(textfont_family="Raleway", selector=dict(type='bar'))
+        elif self.mode[-3:] == "Box":
+            self.inne_num = self.df[Box_list[0]].nunique()
+            self.width = 0.5 / self.inne_num
+            for i,j in enumerate(self.df[Box_list[0]].unique()):
+                self.fig.add_trace(go.Box(
+                    x=self.df[Box_list[1]][self.df[Box_list[0]] == j],
+                    y=self.df[Box_list[2]][self.df[Box_list[0]] == j],
+                    legendgroup='M',
+                    name=j,
+                    marker_color=self.color[i % len(self.color)],
+                    ))
+            self.fig.update_layout(
+                boxmode ='group',  # group together boxes of the different traces for each value of x
+                boxgap = self.bargap,
+                )
+        else:
+            pass
         self.fig.update_xaxes(title_text=self.text["x"], showline=True, linewidth=3, linecolor='black', tickangle=0,gridcolor='#EEEEEE',
-                    title_font=dict(size=16, color='black'),ticks='outside',
+                    ticks='outside',title_font=dict(size=18, color='black'),
                     tickfont=dict(size=18, color='black'))
         self.fig.update_yaxes(title_text=self.text["y"],showline=True, linewidth=3, linecolor='black', tickfont=dict(size=16),
                  title_standoff=10,tickmode='auto',showticklabels=True,ticks='outside',
@@ -44,8 +71,6 @@ class plotly_signif():
                 plot_bgcolor='#ffffff',  # 设置背景色为白色
                 hovermode='closest',
                 dragmode='select',
-                barmode='group',
-                bargap=self.bargap,
                 width=pic_px[0],height=pic_px[1], # 图 -> 宽/高
             )
         self.fig.update_layout(
@@ -56,7 +81,6 @@ class plotly_signif():
                     font=dict(size=15),
                 ),
             )
-        self.fig.update_traces(textfont_family="Raleway", selector=dict(type='bar'))
 
     def show(self,save_path=None,scale=400/96):
         self.fig.show()
@@ -81,7 +105,10 @@ class plotly_signif():
         d : 线和标识符号的距离 ; line_d : 线下沿的长度
         layer_down : 上下间距, y_max : 最上层y轴位置
         '''
-        bar_max = self.fig.data[0]["y"].max()
+        if self.mode[0] == "h":    # 水平绘图
+            bar_max = self.fig.data[0]["x"].max()
+        else:
+            bar_max = self.fig.data[0]["y"].max()
         y_max = bar_max * y_max_index
         layer_down = y_max * layer_down_index
         d = layer_down / sign_d_index
