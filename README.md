@@ -1,5 +1,5 @@
 # plotly-signif
- A python example of drawing a box plot based on the plotly package, with freely definable statistical annotations
+ A python class of drawing a Bar/Box plot based on the plotly package, with freely definable statistical annotations
 
 
 ## How to use
@@ -78,7 +78,7 @@ test2.show()
 data = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/fmri.csv')
 
 
-subject	timepoint	event	region	signal
+    subject	timepoint	event	region	signal
 0	s13	18	stim	parietal	-0.017552
 1	s5	14	stim	parietal	-0.080883
 2	s12	18	stim	parietal	-0.081033
