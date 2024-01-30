@@ -28,12 +28,13 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install build
-    - name: Build package
-      run: python -m build
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
-      with:
-        user: DeathSprout
-        password: pypi-AgEIcHlwaS5vcmcCJDZlODk1YmUxLWIxNTktNGE1OS1iMjBmLWY1ODM4NmU0YzgyMwACKlszLCI0ODY0NzUxZC1iNmZmLTQ4MjMtOGMyYi1hOWI4MjA2ZjdmMTEiXQAABiBj5YwIYyQg77kWnmlds8lc78qpHh-EKmj4tj_9Jj-jEg
+        python3 -m pip install --upgrade build
+        python3 -m pip install --user --upgrade twine
+    # 构建和发布换成前面的脚本
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: $
+        TWINE_PASSWORD: $
+      run: |
+        python3 -m build
+        python3 -m twine upload dist/*

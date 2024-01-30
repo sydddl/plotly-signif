@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/plotly_signif/__init__.py
+src/plotly_signif/plotly_signif.py
+src/plotly_signif.egg-info/PKG-INFO
+src/plotly_signif.egg-info/SOURCES.txt
+src/plotly_signif.egg-info/dependency_links.txt
+src/plotly_signif.egg-info/top_level.txt

@@ -1,0 +1,20 @@
+[project]
+dynamic = ["version"]
+name = "plotly-signif"
+description = "A python class of drawing a Bar/Box plot based on the plotly package, with freely definable statistical annotations"
+authors = [
+    { name="ZiChen Wang", email="2148519656@qq.com"},
+]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+requires-python = ">= 3.7"
+
+[build-system]
+requires = [
+    "setuptools==69.0.3",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
