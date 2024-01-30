@@ -4,6 +4,14 @@
 
 ## How to use
 
+### Pip
+
+```py
+pip install plotly-signif
+```
+
+### Download
+
 - Download the `plotly_signif.py` to the path of your program
 - ```py
   from plotly_signif import *
