@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: plotly-signif
-Version: 0.0.0
+Version: 0.0.41
 Summary: A python class of drawing a Bar/Box plot based on the plotly package, with freely definable statistical annotations
 Home-page: https://github.com/sydddl/plotly-signif
 Author: ZiChen Wang
@@ -17,10 +17,28 @@ License-File: LICENSE
 
 ## How to use
 
+### Download
+
+- Use `pip`
+
+```py
+pip install plotly-signif
+```
+
+You can import like this:
+
+```py
+from plotly_signif import plotly_signif
+# or
+from plotly_signif import *
+```
+
 - Download the `plotly_signif.py` to the path of your program
-- ```py
+
+```py
   from plotly_signif import *
-  ```
+```
+
 - Enjoy it
 
 ### Bar 

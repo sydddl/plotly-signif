@@ -1,5 +1,5 @@
 [project]
-dynamic = ["version"]
+version = "0.0.41"
 name = "plotly-signif"
 description = "A python class of drawing a Bar/Box plot based on the plotly package, with freely definable statistical annotations"
 authors = [

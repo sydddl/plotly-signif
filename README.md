@@ -4,18 +4,28 @@
 
 ## How to use
 
-### Pip
+### Download
+
+- Use `pip`
 
 ```py
 pip install plotly-signif
 ```
 
-### Download
+You can import like this:
+
+```py
+from plotly_signif import plotly_signif
+# or
+from plotly_signif import *
+```
 
 - Download the `plotly_signif.py` to the path of your program
-- ```py
+
+```py
   from plotly_signif import *
-  ```
+```
+
 - Enjoy it
 
 ### Bar 
