@@ -1,6 +1,11 @@
 # plotly-signif
- A python class of drawing a Bar/Box plot based on the plotly package, with freely definable statistical annotations
+![GitHub top language](https://img.shields.io/github/languages/top/sydddl/plotly-signif?color=%2351A8DD) ![PyPI - Version](https://img.shields.io/pypi/v/plotly-signif) <img alt="Static Badge" src="https://img.shields.io/badge/License-MIT-%235DAC81"> [![PyPI download month](https://img.shields.io/pypi/dm/plotly-signif.svg)](https://pypi.org/project/plotly-signif/)  ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/sydddl/plotly-signif?color=%238A6BBE)
 
+
+A python class of drawing a Bar/Box plot based on the plotly package, with freely definable statistical annotations
+
+
+_I hope this program can help you, and I will be very happy if you can give me a_ [![Github Stars](https://img.shields.io/github/stars/sydddl/plotly-signif.svg?style=social&label=Stars)](https://github.com/sydddl/plotly-signif)
 
 ## How to use
 
