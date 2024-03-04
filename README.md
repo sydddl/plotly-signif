@@ -61,6 +61,12 @@ test.show("./image/example.png")  # 保存使用属性 save_path = "./image/exam
 
 ![](./image/example.png)
 
+It is better than [statannotations](https://github.com/trevismd/statannotations) in representing such complex intra-group and inter-group annotations, but its current functionality and compatibility are not as good as statannotations. If this project cannot meet your needs, it is recommended to try statannotations.
+
+The picture below is the first example given by [statannotations](https://github.com/trevismd/statannotations). Pay attention to the annotations between groups.
+
+![](https://raw.githubusercontent.com/trevismd/statannotations/master/usage/example_hue_layout.png)
+
 ```py
 test2 = plotly_signif(data=df1,error=df2,text={"x":"X","y":"Y"})  
 test2.set_color(["#453C67","#6D67E4",'#B799FF','#ACBCFF']) # change the colors
